@@ -1,0 +1,12 @@
+# OASIS_START
+# DO NOT EDIT (digest: ef0235a50e74a84fe2419ccc2189165a)
+version = "2.4.3"
+description = "Lightweight thread library for Objective Caml"
+requires = "camlp4 camlp4.quotations.o"
+archive(byte) = "optcomp.cma"
+archive(byte, plugin) = "optcomp.cma"
+archive(native) = "optcomp.cmxa"
+archive(native, plugin) = "optcomp.cmxs"
+exists_if = "optcomp.cma"
+# OASIS_STOP
+
