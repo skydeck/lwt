@@ -612,12 +612,15 @@ let openfile name flags perms =
 
 #endif
 
+let on_close = ref (fun ch -> ())
+
 #if windows
 
 let close ch =
   if ch.state = Closed then check_descriptor ch;
   set_state ch Closed;
   clear_events ch;
+  !on_close ch;
   return (Unix.close ch.fd)
 
 #else
@@ -626,6 +629,7 @@ let close ch =
   if ch.state = Closed then check_descriptor ch;
   set_state ch Closed;
   clear_events ch;
+  !on_close ch;
   run_job (Jobs.close_job ch.fd)
 
 #endif

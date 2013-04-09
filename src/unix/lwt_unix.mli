@@ -323,6 +323,9 @@ val close : file_descr -> unit Lwt.t
   (** Close a {b file descriptor}. This close the underlying unix {b
       file descriptor} and set its state to {!Closed} *)
 
+val on_close : (file_descr -> unit) ref
+  (** Function called before closing. *)
+
 val read : file_descr -> string -> int -> int -> int Lwt.t
   (** [read fd buf ofs len] has the same semantic as [Unix.read], but
       is cooperative *)
